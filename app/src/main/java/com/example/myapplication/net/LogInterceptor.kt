@@ -9,7 +9,10 @@ class LogInterceptor :Interceptor{
     override fun intercept(chain: Interceptor.Chain): Response {
         val request = chain.request()
         val response = chain.proceed(request)
-        L.json(response)
+        var builder = response.newBuilder()
+        val body = builder.build().body()!!.string()
+//        L.header()
+        L.json(body)
         return response
     }
 
